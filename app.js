@@ -59,7 +59,7 @@ function gogo() {
                     len = reddit.length,
                     j;
  
-                // Limit 10 top 15
+                // Limit top 15
                 if(len > 15) {
                     len = 15;
                 }
@@ -75,81 +75,17 @@ function gogo() {
                         domain = ar.domain;
                     
 
-                    if(!tweeted[title] && (domain == "imgur.com" || domain=="youtube.com" || domain=="media.indiedb.com") && created>load_time){
+                    if(!tweeted[title] && (domain == "imgur.com" || domain=="youtube.com" || domain=="media.indiedb.com" || domain=="pixeljoint.com" || domain=="i.imgur.com") && created>load_time){
                     // Send tweet
+                    title = shortenTweet(title);
                     console.log([title, ' Url: ', url, ' '].join(''));
-                    twit.updateStatus([title, ' ', url, ' '].join(''), function(err) {
+                    twit.updateStatus([title, ' ', url, ' #pixelArt'].join(''), function(err) {
                     if(err) console.log('Twit err: ' + err);
                     });
 
                     tweeted[title] = true;
-                }
-    
-                    if(score >= score_threshold && !tweeted[title] && created > load_time) {
- 
-                    /*
-                     * Because this next block contains asynchronous requests (bitly....), we need to wrap
-                     * it in an anonomous function, otherwise the article we are pointing to gets out of
-                     * sync.  I.e. by the time we got to the updateStatus line, 'art' would might well be
-                     * pointing to the next article as the asynchronous code is not going to wait for the
-                     * bitly request to complete and will just continue looping through the results from
-                     * the reddit API request.
-                     *
-                     * The following function will always output '10'
-                     *
-                     * for(var i=0; i<10; i++) {
-                     *  someAsyncFunction(function() {
-                     *   console.log(i);
-                     *  });
-                     * }
-                     *
-                     * To achieve the desired output (1, 2, 3 .... 10), we need to wrap the asyncFunction
-                     * in an anonymous function
-                     *
-                     *
-                     * for(var i=0; i<10; i++) {
-                     *  (function(j) {
-                     *    someAsyncFunction(function() {
-                     *    console.log(j);
-                     *   });
-                     *  })(i);
-                     * }
-                     */
-
-
-
-                    (function(art) {
-                            var url = art.url,
-                                comments = 'http://www.reddit.com' + art.permalink,
-                                title = art.title,
-                                title_sh = shortenTweet(art.title),
-                                short_url, short_comments;
-
- 
- 
-                            tweeted[title] = true;
- 
-                            // Shorten main url using bitly api
-                           /* b.shorten(url, function(err, sh) {
-                                if(err) console.log('Error: ' + err);
- 
-                                short_url = sh.data.url;
- 
-                                // Shorten comment url using bitly api
-                                b.shorten(comments, function(err, shc) {
-                                    if(err) console.log('Error: ' + err);
- 
-                                    short_comments = shc.data.url;
- 
-                                    // Send tweet
-                                    console.log([title_sh, ' ', short_url, ' Comments: ' + short_comments].join(''));
-                                    twit.updateStatus([title_sh, ' ', short_url, ' Comments: ' + short_comments].join(''), function(err) {
-                                        if(err) console.log('Twit err: ' + err);
-                                    });
-                                });
-                            });*/
-                    })(ar);
-                    }
+                }(ar);
+                    
                 }
  
             });
@@ -172,6 +108,6 @@ var shortenTweet = function(tweet) {
 };
  
  
-setInterval(function() {gogo();}, 1000*60*3);
+setInterval(function() {gogo();}, 1000*60*5);
  
 gogo();
