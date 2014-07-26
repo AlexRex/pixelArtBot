@@ -3,8 +3,6 @@
  */
 var twitter = require('ntwitter'),
     http = require('http'),
-    //bitly = require('bitly'),
-    //b = new bitly('USER', 'API_KEY'),
     tweeted = {},
     load_time = Math.round(new Date().getTime() / 10000),
     score_threshold = 100;
