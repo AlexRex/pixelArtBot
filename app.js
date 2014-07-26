@@ -13,12 +13,11 @@ var twitter = require('twit'),
  * Setup twitter api
  */
 var twit = new twitter({
-  consumer_key: '****',
-  consumer_secret: '****',
-  access_token: '****',
-  access_token_secret: '****'
+  consumer_key: 'lfmpcxXOOSX268v3almVQ',
+  consumer_secret: 'jdzbs9AGkzicxf96Y8fpAyt6vSRxNpDDafOwyxI',
+  access_token: '2197723268-1DIzWv1KB05tcnR8kx6dXuDA5jgoXxySbCnJeFJ',
+  access_token_secret: 'BAca4IL8oErUEyMbakw8EB49IcsOOR6muM8YF9WMXsopT'
 });
- 
  
  
 /*
