@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "author": "deskarat77@yahoo.es",
   "dependencies": {
-    "ntwitter": "0.5.0"
+    "ntwitter": "0.5.0",
+    "twit": "~1.1.18"
   },
   "engines": {
     "node": "0.10.x",
