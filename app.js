@@ -151,10 +151,7 @@ function gogo() {
                     });*/
 
 
-                    //ntwitter
-                    //twit.updateStatus([title, ' ', url, ' #pixelArt'].join(''), function(err) {
-                    //if(err) console.log('Twit err: ' + err);
-                    //});
+                    
 
                     tweeted.push(id);
                 }(ar);
