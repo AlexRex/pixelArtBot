@@ -146,9 +146,9 @@ function gogo() {
 
                     console.log([title, ' Url: ', url, ' '].join(''));
                     //twit
-                   /*twit.post('statuses/update', {status: [title, ' ', url, ' #pixelArt'].join('')}, function(err, data, response){
+                   twit.post('statuses/update', {status: [title, ' ', url, ' #pixelArt'].join('')}, function(err, data, response){
                         console.log(data);
-                    });*/
+                    });
 
 
                     
